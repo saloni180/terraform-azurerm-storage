@@ -14,6 +14,17 @@ provider "azurerm" {
   skip_provider_registration = true
 }
 
+terraform { 
+  cloud { 
+    
+    organization = "sal180" 
+
+    workspaces { 
+      name = "TerraformCI" 
+    } 
+  } 
+}
+
 resource "azurerm_resource_group" "rg" {
   name     = "var.environment"
   location = "var.location"
@@ -31,7 +42,7 @@ resource "azurerm_storage_account" "storage" {
   location                      = var.resource_group_location
   public_network_access_enabled = false
   account_tier                  = "Standard"
-  tags                          = local.tags
+  tags                          = local.tags["environment"]
 }
 
 locals {
