@@ -31,7 +31,7 @@ resource "azurerm_storage_account" "storage" {
   location                      = var.resource_group_location
   public_network_access_enabled = false
   account_tier                  = "Standard"
-  tags                          = locals.tags
+  tags                          = locals.tags.environment
 }
 
 locals {
